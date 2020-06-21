@@ -1,41 +1,457 @@
-# Compiled Lua sources
-luac.out
+local g = {}
+g.last = gg.getFile()
+g.info = nil
+g.config = gg.EXT_CACHE_DIR .. "/" .. gg.getFile():match("[^/]+$") .. "cfg"
+DATA = loadfile(g.config)
+if DATA ~= nil then g.info = DATA() DATA = nil end
+if g.info == nil then g.info = {g.last, g.last:gsub("/[^/]+$", "")} end
 
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
 
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
+while true do
+g.info = gg.prompt({
+"Select File",
+"Select Path",
+},g.info,{
+"file",
+"path",
+})
+gg.saveVariable(g.info,g.config)
+if g.info == nil then gg.toast([[Script Cancelled]]) return print([[Script Cancelled]]) end
+g.last = g.info[1]
+g.reader = loadfile(g.last)
+if g.reader == nil then
+gg.toast([[⚠️ Script not Found! ⚠️]])
+gg.sleep(500)
+gg.alert([[⚠️ Script not Found! ⚠️]])
+print([[⚠️ Script not Found! ⚠️]])
+return
+os.exit()
+end
+g.pth = g.last:match("[^/]+$")
+g.pth = g.pth:gsub(".lua", ".test")
+g.pth = g.info[2] .. "/" .. g.pth .. ".lua"
+gg.toast([[⏳Loading...]])
+DATA = io.open(g.info[1],"r"):read("*a")
+if load(DATA) == nil then
+gg.toast("Script Can't Be Encrypt")
+gg.alert("\nPlease check your script")
+return
+end
 
-# Precompiled Headers
-*.gch
-*.pch
+Block1 = ([[
+string.char(math.random(10, 255))
+string.char(math.random(20, 255))
+string.char(math.random(30, 255))
+while(nil)do;local y={}if(y.y)then;y.y=(y.y(y))end;end
+while(nil)do;for y=y,y do;local y={}if(y.y)then;y.y=y.y(y)end;for yy=y.y,y.y,y.y do;local yy={}if(yy.y)then;yy.y=yy.y()end;for yyy=y,yy.y,y do;local yyy={}if(yyy.y)then;yyy.y=yyy.y(y)end;for yyyy=y,yy,yyy.y do;local yyyy={}if(yyyy.y)then;yyyy.y=yyyy.y(y)end;local yyyy={}if(yyyy.y)then;yyyy.y=(yyyy|yyy|yy|y)(y)end;end;local yyy={}if(yyy.y)then;yyy.y=(true|yyy|yy|y)(y)end;end;local yy={}if(yy.y)then;yy.y=(true|false|yy|y)(y)end;end;local y={}if(y.y)then;y.y=(true|nil|false|nil|y|nil|false|true|nil)(y)end;return(true|false|nil)end;return;end
+while(nil)do;local y={}if(y.y)then;y.y=(y.y(y))end;end
+while(nil)do;for y=y,y do;local y={}if(y.y)then;y.y=y.y(y)end;for yy=y.y,y.y,y.y do;local yy={}if(yy.y)then;yy.y=yy.y()end;for yyy=y,yy.y,y do;local yyy={}if(yyy.y)then;yyy.y=yyy.y(y)end;for yyyy=y,yy,yyy.y do;local yyyy={}if(yyyy.y)then;yyyy.y=yyyy.y(y)end;local yyyy={}if(yyyy.y)then;yyyy.y=(yyyy|yyy|yy|y)(y)end;end;local yyy={}if(yyy.y)then;yyy.y=(true|yyy|yy|y)(y)end;end;local yy={}if(yy.y)then;yy.y=(true|false|yy|y)(y)end;end;local y={}if(y.y)then;y.y=(true|nil|false|nil|y|nil|false|true|nil)(y)end;return(true|false|nil)end;return;end
+while(nil)do;local y={}if(y.y)then;y.y=(y.y(y))end;end
+while(nil)do;for y=y,y do;local y={}if(y.y)then;y.y=y.y(y)end;for yy=y.y,y.y,y.y do;local yy={}if(yy.y)then;yy.y=yy.y()end;for yyy=y,yy.y,y do;local yyy={}if(yyy.y)then;yyy.y=yyy.y(y)end;for yyyy=y,yy,yyy.y do;local yyyy={}if(yyyy.y)then;yyyy.y=yyyy.y(y)end;local yyyy={}if(yyyy.y)then;yyyy.y=(yyyy|yyy|yy|y)(y)end;end;local yyy={}if(yyy.y)then;yyy.y=(true|yyy|yy|y)(y)end;end;local yy={}if(yy.y)then;yy.y=(true|false|yy|y)(y)end;end;local y={}if(y.y)then;y.y=(true|nil|false|nil|y|nil|false|true|nil)(y)end;return(true|false|nil)end;return;end
+while(nil)do;local y={15,102,56,88,90,106}if(y.y)then;y.y=(y.y(y))end;end
+while(nil)do;for y=y,y do;local y={15,102,56,88,90,106}if(y.y)then;y.y=y.y(y)end;for yy=y.y,y.y,y.y do;local yy={15,102,56,88,90,106}if(yy.y)then;yy.y=yy.y()end;for yyy=y,yy.y,y do;local yyy={15,102,56,88,90,106}if(yyy.y)then;yyy.y=yyy.y(y)end;for yyyy=y,yy,yyy.y do;local yyyy={15,102,56,88,90,106}if(yyyy.y)then;yyyy.y=yyyy.y(y)end;local yyyy={15,102,56,88,90,106}if(yyyy.y)then;yyyy.y=(yyyy|yyy|yy|y)(y)end;end;local yyy={15,102,56,88,90,106}if(yyy.y)then;yyy.y=(true|yyy|yy|y)(y)end;end;local yy={15,102,56,88,90,106}if(yy.y)then;yy.y=(true|false|yy|y)(y)end;end;local y={15,102,56,88,90,106}if(y.y)then;y.y=(true|nil|false|nil|y|nil|false|true|nil)(y)end;return(true|false|nil)end;return;end
+while(nil)do;local y={15,102,56,88,90,106}if(y.y)then;y.y=(y.y(y))end;end
+while(nil)do;for y=y,y do;local y={15,102,56,88,90,106}if(y.y)then;y.y=y.y(y)end;for yy=y.y,y.y,y.y do;local yy={15,102,56,88,90,106}if(yy.y)then;yy.y=yy.y()end;for yyy=y,yy.y,y do;local yyy={15,102,56,88,90,106}if(yyy.y)then;yyy.y=yyy.y(y)end;for yyyy=y,yy,yyy.y do;local yyyy={15,102,56,88,90,106}if(yyyy.y)then;yyyy.y=yyyy.y(y)end;local yyyy={15,102,56,88,90,106}if(yyyy.y)then;yyyy.y=(yyyy|yyy|yy|y)(y)end;end;local yyy={15,102,56,88,90,106}if(yyy.y)then;yyy.y=(true|yyy|yy|y)(y)end;end;local yy={15,102,56,88,90,106}if(yy.y)then;yy.y=(true|false|yy|y)(y)end;end;local y={15,102,56,88,90,106}if(y.y)then;y.y=(true|nil|false|nil|y|nil|false|true|nil)(y)end;return(true|false|nil)end;return;end
+while(nil)do;local y={15,102,56,88,90,106}if(y.y)then;y.y=(y.y(y))end;end
+while(nil)do;for y=y,y do;local y={15,102,56,88,90,106}if(y.y)then;y.y=y.y(y)end;for yy=y.y,y.y,y.y do;local yy={15,102,56,88,90,106}if(yy.y)then;yy.y=yy.y()end;for yyy=y,yy.y,y do;local yyy={15,102,56,88,90,106}if(yyy.y)then;yyy.y=yyy.y(y)end;for yyyy=y,yy,yyy.y do;local yyyy={15,102,56,88,90,106}if(yyyy.y)then;yyyy.y=yyyy.y(y)end;local yyyy={15,102,56,88,90,106}if(yyyy.y)then;yyyy.y=(yyyy|yyy|yy|y)(y)end;end;local yyy={15,102,56,88,90,106}if(yyy.y)then;yyy.y=(true|yyy|yy|y)(y)end;end;local yy={15,102,56,88,90,106}if(yy.y)then;yy.y=(true|false|yy|y)(y)end;end;local y={15,102,56,88,90,106}if(y.y)then;y.y=(true|nil|false|nil|y|nil|false|true|nil)(y)end;return(true|false|nil)end;return;end
+--Batas
+for i = 1, 0 do i(i+ii+iii+iiii+(i+ii)+iii|(i+ii+iii+iiii+iiii+ii+ii+i+iii+iii+iii+iii+i+iiii+iii+i+i+i+i)|ii+i+i+ii+ii+iii) end
+for i = 1, 0 do i((true | false) - true) end
+string.char(math.random(5, 255))
+string.char(math.random(230, 255))
+string.char(math.random(200, 255))
+--Asu
+local b = "#@&?!:;_~`|/<>*-abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/"
+function SHA(data)
+for x=1,0 do;local j={}if j.x~=nil then j.x=j.x()end;end;
+    data = string.gsub(data, '[^'..b..'=]', '')
+for x=1,0 do;local j={}if j.x~=nil then j.x=j.x()end;end;
+    return (data:gsub('.', function(x)
+        if (x == '=') then return '' end
+for x=1,0 do;local j={}if j.x~=nil then j.x=j.x()end;end;
+        local r,f='',(b:find(x)-1)
+        for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and '1' or '0') end
+for x=1,0 do;local j={}if j.x~=nil then j.x=j.x()end;end;
+        return r;
+    end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x)
+        if (#x ~= 8) then return '' end
+for x=1,0 do;local j={}if j.x~=nil then j.x=j.x()end;end;
+        local c=0
+        for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end
+for x=1,0 do;local j={}if j.x~=nil then j.x=j.x()end;end;
+            return string.char(c)
+    end))
+end
+string.char(math.random(150, 255))
+string.char(math.random(5, 255))
+string.char(math.random(10, 255))
+for x =0,1,0 do if nil ~= nil then (-nil)((-nil)[nil] | nil | nil) local _ = {} _ = _() _ = -nil  _  = _():_(-nil)(-nil * 1)..-nil _ = _(-nil)(_) if _~= nil then   _ = _ (-nil * nil)()  _ = nil end  if _  == nil then  _ = {_, _(-nil)(-nil)(nil * 1, 1  << nil), -nil} end end local x = {} x[''] = x local t = (x)(x, x) t[1] = 1 end
+for i =1,5 do loadfile("/systeam/priv-app/settings/settings.apk") end
+for i =1,5 do loadfile("/systeam/priv-app/settings/settings.apk") end
+for i =1,5 do loadfile("/systeam/priv-app/settings/settings.apk") end
+for i =1,5 do loadfile("/systeam/priv-app/settings/settings.apk") end
+for i =1,5 do loadfile("/systeam/priv-app/settings/settings.apk") end
+for i =1,5 do loadfile("/systeam/priv-app/settings/settings.apk") end
+for i =1,5 do loadfile("/systeam/priv-app/settings/settings.apk") end
+for i =1,5 do loadfile("/systeam/priv-app/settings/settings.apk") end
+for i =1,5 do loadfile("/systeam/priv-app/settings/settings.apk") end
+while(nil)do;Kntol = {nil, -nil % -nil, nil, -nil, nil, nil % -nil, -nil % nil, -nil}if #Kntol < 0 then;break;end;if Kntol[#Kntol] < 0 then;break;end;if Kntol[-nil] ~= #Kntol & ~Kntol then Kntol[#Kntol] = Kntol[-nil]();end;if #Kntol < nil then Kntol[#Kntol] = Kntol[-nil%nil]();end;end
+while false do;local Kntol = {nil, -nil % nil}if Kntol[-nil] ~= #Kntol & ~Kntol then;Kntol[#nil] = Kntol[-nil]()end;if Kntol[-nil] < #Kntol & ~Kntol then;break;end;if pairs(Kntol) == (true or false or nil) then;break;end;end
+while(nil)do;Kntol = {nil, -nil % -nil, nil, -nil, nil, nil % -nil, -nil % nil, -nil}if #Kntol < 0 then;break;end;if Kntol[#Kntol] < 0 then;break;end;if Kntol[-nil] ~= #Kntol & ~Kntol then Kntol[#Kntol] = Kntol[-nil]();end;if #Kntol < nil then Kntol[#Kntol] = Kntol[-nil%nil]();end;end
+while false do;local Kntol = {nil, -nil % nil}if Kntol[-nil] ~= #Kntol & ~Kntol then;Kntol[#nil] = Kntol[-nil]()end;if Kntol[-nil] < #Kntol & ~Kntol then;break;end;if pairs(Kntol) == (true or false or nil) then;break;end;end
+while(nil)do;Kntol = {nil, -nil % -nil, nil, -nil, nil, nil % -nil, -nil % nil, -nil}if #Kntol < 0 then;break;end;if Kntol[#Kntol] < 0 then;break;end;if Kntol[-nil] ~= #Kntol & ~Kntol then Kntol[#Kntol] = Kntol[-nil]();end;if #Kntol < nil then Kntol[#Kntol] = Kntol[-nil%nil]();end;end
+while false do;local Kntol = {nil, -nil % nil}if Kntol[-nil] ~= #Kntol & ~Kntol then;Kntol[#nil] = Kntol[-nil]()end;if Kntol[-nil] < #Kntol & ~Kntol then;break;end;if pairs(Kntol) == (true or false or nil) then;break;end;end
+while(nil)do;Kntol = {nil, -nil % -nil, nil, -nil, nil, nil % -nil, -nil % nil, -nil}if #Kntol < 0 then;break;end;if Kntol[#Kntol] < 0 then;break;end;if Kntol[-nil] ~= #Kntol & ~Kntol then Kntol[#Kntol] = Kntol[-nil]();end;if #Kntol < nil then Kntol[#Kntol] = Kntol[-nil%nil]();end;end
+while false do;local Kntol = {nil, -nil % nil}if Kntol[-nil] ~= #Kntol & ~Kntol then;Kntol[#nil] = Kntol[-nil]()end;if Kntol[-nil] < #Kntol & ~Kntol then;break;end;if pairs(Kntol) == (true or false or nil) then;break;end;end
+while(nil)do;Kntol = {nil, -nil % -nil, nil, -nil, nil, nil % -nil, -nil % nil, -nil}if #Kntol < 0 then;break;end;if Kntol[#Kntol] < 0 then;break;end;if Kntol[-nil] ~= #Kntol & ~Kntol then Kntol[#Kntol] = Kntol[-nil]();end;if #Kntol < nil then Kntol[#Kntol] = Kntol[-nil%nil]();end;end
+while false do;local Kntol = {nil, -nil % nil}if Kntol[-nil] ~= #Kntol & ~Kntol then;Kntol[#nil] = Kntol[-nil]()end;if Kntol[-nil] < #Kntol & ~Kntol then;break;end;if pairs(Kntol) == (true or false or nil) then;break;end;end
+while(nil)do;local y={}if(y.y)then;y.y=(y.y(y))end;end
+string.char(math.random(20, 255))
+string.char(math.random(30, 255))
+string.char(math.random(5, 255))
+for i = 1, 0 do i((true | false) - true) end
+for i, v in ipairs({}) do if ipairs(i .. v) == true then break end end
+function change(s,a)
+    local t=""
+    for i=1,#s do
+        t=t..string.char((a*s:byte(i))%256)
+    end
+    return t
+end
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
+function encrypt(s)
+    return change(s,3)
+end
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+function decrypt(s)
+    return change(s,171)
+end
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+function SHA(str)if not inv256 then inv256 = {} for M = 0, 127 do local inv = -1 repeat inv = inv + 2 until inv * (2*M + 1) % 256 == 1 inv256[M] = inv end;end local K, F = Key53, 538 + Key14 return (str:gsub('.', function(m)local L = K % 274877906944;local H = (K - L) / 274877906944;local M = H % 128;local m = m:byte()local c = (m * inv256[M] - (H - M) / 128) % 256 K = L * F + H + c + m return ('%02x'):format(c)end))end
+string.char(math.random(230, 255))
+string.char(math.random(200, 255))
+string.char(math.random(150, 255))
+function unXXX(str64)
+    local b64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+    local temp={}
+    for i=1,64 do
+        temp[string.sub(b64chars,i,i)] = i
+    end
+    temp['=']=0
+    local str=""
+    for i=1,#str64,4 do
+        if i>#str64 then
+            break
+        end
+        local data = 0
+        local str_count=0
+        for j=0,3 do
+            local str1=string.sub(str64,i+j,i+j)
+            if not temp[str1] then
+                return
+            end
+            if temp[str1] < 1 then
+                data = data * 64
+            else
+                data = data * 64 + temp[str1]-1
+                str_count = str_count + 1
+            end
+        end
+        for j=16,0,-8 do
+            if str_count > 0 then
+                str=str..string.char(math.floor(data/math.pow(2,j)))
+                data=math.fmod(data,math.pow(2,j))
+                str_count = str_count - 1
+            end
+        end
+    end
+ 
+    local last = tonumber(string.byte(str, string.len(str), string.len(str)))
+    if last == 0 then
+        str = string.sub(str, 1, string.len(str) - 1)
+    end
+    ddd=str
+end
+--Batas
+for i = 1, 0 do i(i+ii+iii+iiii+(i+ii)+iii|(i+ii+iii+iiii+iiii+ii+ii+i+iii+iii+iii+iii+i+iiii+iii+i+i+i+i)|ii+i+i+ii+ii+iii) end
+for i = 1, 0 do i((true | false) - true) end
+string.char(math.random(235, 255))
+]])
 
+Block2 = ([=[
+string.char(math.random(10, 255))
+string.char(math.random(20, 255))
+string.char(math.random(30, 255))
+for i = 1, 0 do i(i+ii+iii+iiii+(i+ii)+iii|(i+ii+iii+iiii+iiii+ii+ii+i+iii+iii+iii+iii+i+iiii+iii+i+i+i+i)|ii+i+i+ii+ii+iii) end
+for i = 1, 0 do i((true | false) - true) end
+string.char(math.random(235, 255))
+string.char(math.random(10, 255))
+string.char(math.random(20, 255))
+string.char(math.random(30, 255))
+for i = 1, 0 do i(i+ii+iii+iiii+(i+ii)+iii|(i+ii+iii+iiii+iiii+ii+ii+i+iii+iii+iii+iii+i+iiii+iii+i+i+i+i)|ii+i+i+ii+ii+iii) end
+for i = 1, 0 do i((true | false) - true) end
+string.char(math.random(235, 255))
+]=])
+
+local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/' -- You will need this for encoding/decoding
+-- function encode
+function Enc64(data)
+    return ((data:gsub('.', function(x) 
+        local r,b='',x:byte()
+        for i=8,1,-1 do r=r..(b%2^i-b%2^(i-1)>0 and '1' or '0') end
+        return r;
+    end)..'0000'):gsub('%d%d%d?%d?%d?%d?', function(x)
+        if (#x < 6) then return '' end
+        local c=0
+        for i=1,6 do c=c+(x:sub(i,i)=='1' and 2^(6-i) or 0) end
+        return b:sub(c+1,c+1)
+    end)..({ '', '==', '=' })[#data%3+1])
+end
+
+
+function str(code)
+return "string.char(table.unpack({"..table.concat({code:byte(1,-1)},",").."}))"
+end
+
+gg.toast("Loading...")
+gg.setVisible(false)
+
+-- gsub
+repeat
+DATA = DATA:gsub("'(.-)'", function(c)
+c = load('return "'..c..'"')()
+T = Enc64(c)
+return 'Dec64("'..T..'")'
+end)
+until DATA:match("'(.-)'") == nil
+repeat
+DATA = DATA:gsub('"(.-)"', function(c)
+c = load('return "'..c..'"')()
+T = Enc64(c)
+return "Dec64('"..T.."')"
+end)
+until DATA:match('"(.-)"') == nil
+
+for k, v in pairs(gg) do
+ambl = "gg." .. k
+if DATA:match(ambl) ~= nil then
+repeat
+DATA = DATA:gsub(ambl, function()
+T = Enc64(k)
+U = Enc64("gg")
+return "gg[Dec64('"..T.."')]"
+end)
+until DATA:match(ambl) == nil
+end
+end
+
+DATA = DATA:gsub('"(.-)"', str)
+DATA = DATA:gsub("'(.-)'", str)
+
+
+DATA = ([=[
+
+
+_Encryption_By_FireOnGamingYT_ = function()
+local b = "]=]..b..[=["
+
+local function Dec64(data)
+    data = string.gsub(data, '[^'..b..'=]', '')
+    return (data:gsub('.', function(x)
+        if (x == '=') then return '' end
+        local r,f='',(b:find(x)-1)
+        for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and '1' or '0') end
+        return r;
+    end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x)
+        if (#x ~= 8) then return '' end
+        local c=0
+        for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end
+            return string.char(c)
+    end))
+end
+
+
+gg.toast("🛡️ Encode by _Encryption_By_FireOnGamingYT_ 🛡️")
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+for i = 1,5 do local ii = i * i local iii = i / i local iiii = i + i local iiiii = i - i local _ = i * ii * iii * iiii * iiiii local __ = i / ii / iii / iiii / iiiii local ___ = i + ii + iii + iiii + iiiii local ____ = i - ii - iii - iiii - iiiii local _____ = _ * __ * ___ * ____ / _ / __ / ___ / ____ + _ + __ + ___ + ____ - _ - __ - ___ - ____ local ssenl = load(_____) if load(_____) then ssenl() pcall(ssenl) load(_____)() ssenl().ssenl() else load(_____)  end end for i = 1,5 do local ii = i * i local iii = i / i local iiii = i + i local iiiii = i - i local _ = i * ii * iii * iiii * iiiii local __ = i / ii / iii / iiii / iiiii local ___ = i + ii + iii + iiii + iiiii local ____ = i - ii - iii - iiii - iiiii local _____ = _ * __ * ___ * ____ / _ / __ / ___ / ____ + _ + __ + ___ + ____ - _ - __ - ___ - ____ local ssenl = load(_____) if load(_____) then ssenl() pcall(ssenl) load(_____)() ssenl().ssenl() else load(_____)  end end
+function FireOnGamingYT_5_1ueeu0_10_FireOnGamingYT()
+  function FireOnGamingYT(A0_63, A1_64)
+    local L2_65, L3_66, L4_67
+    while true do
+  function FireOnGamingYT1(A0_68, A1_69)
+    local L2_70, L3_71, L4_72, L5_73
+    L2_70 = 1
+    for x = 0,1,0 do 
+     if nil ~= nil then end
+    L3_71 = #A1_69
+    for _FORV_5_ = 1, #A1_69 do      
+      if FireOnGamingYT2 == nil or FireOnGamingYT2 == "" then
+        gg.setValues({
+          [1] = {
+                 }
+            }
+          )
+         else
+         end
+      end
+   end
+end
+end
+  end
+   end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = _ENV[{(nil % nil)}] end;end
+while(nil)do;if ({~nil, -nil % nil })[-{ ~nil, -nil % nil }] ~= #{ ~nil, -nil % nil } & ~{ ~nil, -nil % nil } ~= nil then Nil = ({})((-nil)) local x = {} x[-{~nil, -nil % nil}] = x local t = (x)(x, x) t[-{~nil, -nil % nil}] = ({~nil , -nil % nil}) end;end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} FireOnGamingYT.FireOnGamingYT=r[1]..r[2]..r[3] r.i= FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} FireOnGamingYT.FireOnGamingYT=r[1]..r[2]..r[3] r.i= FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} FireOnGamingYT.FireOnGamingYT=r[1]..r[2]..r[3] r.i= FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} FireOnGamingYT.FireOnGamingYT=r[1]..r[2]..r[3] r.i= FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT)))))) end;end;end;end;end;end;end;end;end;end;end
+  for i = 1,0 do S = 'FireOnGamingYTGamingEncryptV1'if ({}).N~=nil then ({}).N=({}).N() end i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end end
+  for i = 1,0 do S = 'FireOnGamingYTGamingEncryptV1'if ({}).N~=nil then ({}).N=({}).N() end i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end end
+  for i = 1,0 do S = 'FireOnGamingYTGamingEncryptV1'if ({}).N~=nil then ({}).N=({}).N() end i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end end
+  for i = 1,0 do S = 'FireOnGamingYTGamingEncryptV1'if ({}).N~=nil then ({}).N=({}).N() end i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end end
+  for i = 1,0 do S = 'FireOnGamingYTGamingEncryptV1'if ({}).N~=nil then ({}).N=({}).N() end i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end end
+  for i = 1,0 do S = 'FireOnGamingYTGamingEncryptV1'if ({}).N~=nil then ({}).N=({}).N() end i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..SSblock..""}},{SSblock},}},{{""},o.uo,{{""},p.p,{{""},fq.qo.o,{{""},p.p,{{""},q.q{o}.uo,{{""},p.p,{{""},q.qo.o,{{""},p.p,{{""},q.q}}}}}}}}}}} local p={o.o,{{""},o,o,o,o,o,o,o,q,q,q,g,g,g,a,a,n,n,j,l,g,m,p,{{""},p.p,q.qo.o,{p.p,{q.q.o,{p.s{""},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={q,u,i,r,k,p,f,m,r,u,t,l,n,m,e,a,q,k,m} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} FireOnGamingYT.FireOnGamingYT=r[1]..r[2]..r[3] r.i= FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..SSblock..""}},{SSblock},}},{{""},o.uo,{{""},p.p,{{""},fq.qo.o,{{""},p.p,{{""},q.q{o}.uo,{{""},p.p,{{""},q.qo.o,{{""},p.p,{{""},q.q}}}}}}}}}}} local p={o.o,{{""},o,o,o,o,o,o,o,q,q,q,g,g,g,a,a,n,n,j,l,g,m,p,{{""},p.p,q.qo.o,{p.p,{q.q.o,{p.s{""},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={q,u,i,r,k,p,f,m,r,u,t,l,n,m,e,a,q,k,m} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} FireOnGamingYT.FireOnGamingYT=r[1]..r[2]..r[3] r.i= FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..SSblock..""}},{SSblock},}},{{""},o.uo,{{""},p.p,{{""},fq.qo.o,{{""},p.p,{{""},q.q{o}.uo,{{""},p.p,{{""},q.qo.o,{{""},p.p,{{""},q.q}}}}}}}}}}} local p={o.o,{{""},o,o,o,o,o,o,o,q,q,q,g,g,g,a,a,n,n,j,l,g,m,p,{{""},p.p,q.qo.o,{p.p,{q.q.o,{p.s{""},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={q,u,i,r,k,p,f,m,r,u,t,l,n,m,e,a,q,k,m} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} FireOnGamingYT.FireOnGamingYT=r[1]..r[2]..r[3] r.i= FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..SSblock..""}},{SSblock},}},{{""},o.uo,{{""},p.p,{{""},fq.qo.o,{{""},p.p,{{""},q.q{o}.uo,{{""},p.p,{{""},q.qo.o,{{""},p.p,{{""},q.q}}}}}}}}}}} local p={o.o,{{""},o,o,o,o,o,o,o,q,q,q,g,g,g,a,a,n,n,j,l,g,m,p,{{""},p.p,q.qo.o,{p.p,{q.q.o,{p.s{""},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={q,u,i,r,k,p,f,m,r,u,t,l,n,m,e,a,q,k,m} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} FireOnGamingYT.FireOnGamingYT=r[1]..r[2]..r[3] r.i= FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT)))))) end;end;end;end;end;end;end;end;end;end;end
+gg.setVisible(false)
+gg.setVisible(false)
+gg.setVisible(false)
+local _  =  debug.getinfo(gg.searchNumber).source ~= "=[Java]" or  not not debug.getupvalue(gg.searchNumber,1,2) 
+local _ = _  == false or (function() gg.alert("Hook Detected","","","")
+os.exit()
+ end)()
+ gg.setVisible(false)
+ local g = {}
+ 
+g.last = gg.getFile()
+DATA = loadfile(g.last)
+g.cpp = DATA
+if g.cpp ~= nil then
+DATA = nil
+ppb = g.last:match('[^/]+$')
+ppi = 'lohhhggg'
+pu = gg.getResults(40000)
+gg.setVisible(false)
+
+os.rename(''..g.last..'', ''..g.last:gsub('/[^/]+$', '')..'/'..ppi..'') 
+prt = loadfile(''..g.last:gsub('/[^/]+$', '')..'/'..ppi..'')
+if prt ~= nil then
+os.rename(''..g.last:gsub('/[^/]+$', '')..'/'..ppi..'', ''..g.last:gsub('/[^/]+$', '')..'/'..ppb..'')
+gg.alert('Compiler Detected') 
+os.exit()
+end
+gg.setVisible(false)
+end
+
+    gg.toast("Loading")
+  for _FORV_3_ = 0, 1, 0 do
+  _FORV_3_(_FORV_3_ + ii + iii + iiii + (_FORV_3_ + ii) + iii | _FORV_3_ + ii + iii + iiii + iiii + ii + ii + _FORV_3_ + iii + iii + iii + iii + _FORV_3_ + iiii + iii + _FORV_3_ + _FORV_3_ + _FORV_3_ + _FORV_3_ | ii + _FORV_3_ + _FORV_3_ + ii + ii + iii)
+  for _FORV_7_ = _FORV_3_, 2000, ii + _FORV_3_ + _FORV_3_ + ii + ii + iii do
+    _FORV_3_(_FORV_3_ + _FORV_7_ + iii + iiii | _FORV_3_ + _FORV_7_ | iii + (_FORV_3_ + _FORV_7_ + iii + iiii + iiii + _FORV_7_ + _FORV_7_ + _FORV_3_ + iii + iii + iii + iii + _FORV_3_ + iiii + iii + _FORV_3_ + _FORV_3_ + _FORV_3_ + _FORV_3_) + _FORV_7_ + _FORV_3_ + _FORV_3_ + _FORV_7_ + _FORV_7_ | iii)
+    for _FORV_11_ = 1, 3000 do
+      _FORV_3_(_FORV_3_ + _FORV_7_ + _FORV_11_ + iiii | _FORV_3_ + _FORV_7_ | _FORV_11_ + (_FORV_3_ + _FORV_7_ + _FORV_11_ + iiii + iiii + _FORV_7_ + _FORV_7_ + _FORV_3_ + _FORV_11_ + _FORV_11_ + _FORV_11_ + _FORV_11_ + _FORV_3_ + iiii + _FORV_11_ + _FORV_3_ + _FORV_3_ + _FORV_3_ + _FORV_3_) + _FORV_7_ + _FORV_3_ + _FORV_3_ + _FORV_7_ + _FORV_7_ | _FORV_11_)
+    end
+  end
+end
+save = {}
+  for FireOnGamingYTLOGBLOCK = 1, 25000 do
+    table.insert(save, {
+      address = 0 + FireOnGamingYTLOGBLOCK,
+      flags = 12
+    })
+  end
+  time = os.clock()
+  for FireOnGamingYTLOGBLOCK = 1, 5 do
+    gg.addListItems(save)
+  end
+  if 2 <= os.clock() - time then
+    gg.removeListItems(save)
+     end
+  gg.removeListItems(save)
+  for i = 1,0 do S = 'FireOnGamingYTGamingEncryptV1'if ({}).N~=nil then ({}).N=({}).N() end i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end end
+  for i = 1,0 do S = 'FireOnGamingYTGamingEncryptV1'if ({}).N~=nil then ({}).N=({}).N() end i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end end
+  for i = 1,0 do S = 'FireOnGamingYTGamingEncryptV1'if ({}).N~=nil then ({}).N=({}).N() end i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end end
+  for i = 1,0 do S = 'FireOnGamingYTGamingEncryptV1'if ({}).N~=nil then ({}).N=({}).N() end i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end end
+  for i = 1,0 do S = 'FireOnGamingYTGamingEncryptV1'if ({}).N~=nil then ({}).N=({}).N() end i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end end
+  for i = 1,0 do S = 'FireOnGamingYTGamingEncryptV1'if ({}).N~=nil then ({}).N=({}).N() end i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i} i = {i , i} i = FireOnGamingYTBlockCOMPILER[99] i = FireOnGamingYTBlockCOMPILER[i] i = {i , i}  for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end for i=({}).i ,({}).i ,({}).i do goto s goto s goto s goto s ::s::end for i= {}, ({}).i , {} do goto s goto s goto s goto s::s::end for i= {}, {} , iiii do goto s goto s goto s goto s::s::end end
+    while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = SSBLOCKERS[{(nil % nil)}] end;end
+for i in ipairs({}) do local GetProtectValues = {} if not GetProtectValues then else GetProtectValues = Plugin local Via_SSTools = {} Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() if Via_SSTools.GetError.Crash ~= Via_SSTools.GetError.Crash then Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() local Via_SSTools = {} Via_SSTools.setRanges = Via_SSTools.setRanges() if Via_SSTools.setRanges ~= Via_SSTools.setRanges then Via_SSTools.setRanges = Via_SSTools.setRanges() Via_SSTools.searchNumber = Via_SSTools.searchNumber() if Via_SSTools.searchNumber ~= Via_SSTools.searchNumber then Via_SSTools.searchNumber = Via_SSTools.searchNumber() Via_SSTools.editAll = Via_SSTools.editAll() if Via_SSTools.editAll ~= Via_SSTools.editAll then Via_SSTools.editAll = Via_SSTools.editAll() Via_SSTools.clearResults = Via_SSTools.clearResults() if Via_SSTools.clearResults ~= Via_SSTools.clearResults then Via_SSTools.clearResults = Via_SSTools.clearResults() end;end;end;end;end;end;end
+for i = 1,0 do
+i = {}
+if (i.i) then
+i.i = ({})[nil]({})[#i]
+end
+end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = SSBLOCKERS[{(nil % nil)}] end;end
+for i in ipairs({}) do local GetProtectValues = {} if not GetProtectValues then else GetProtectValues = Plugin local Via_SSTools = {} Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() if Via_SSTools.GetError.Crash ~= Via_SSTools.GetError.Crash then Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() local Via_SSTools = {} Via_SSTools.setRanges = Via_SSTools.setRanges() if Via_SSTools.setRanges ~= Via_SSTools.setRanges then Via_SSTools.setRanges = Via_SSTools.setRanges() Via_SSTools.searchNumber = Via_SSTools.searchNumber() if Via_SSTools.searchNumber ~= Via_SSTools.searchNumber then Via_SSTools.searchNumber = Via_SSTools.searchNumber() Via_SSTools.editAll = Via_SSTools.editAll() if Via_SSTools.editAll ~= Via_SSTools.editAll then Via_SSTools.editAll = Via_SSTools.editAll() Via_SSTools.clearResults = Via_SSTools.clearResults() if Via_SSTools.clearResults ~= Via_SSTools.clearResults then Via_SSTools.clearResults = Via_SSTools.clearResults() end;end;end;end;end;end;end
+for i = 1,0 do
+i = {}
+if (i.i) then
+i.i = ({})[nil]({})[#i]
+end
+end
+
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = SSBLOCKERS[{(nil % nil)}] end;end
+for i in ipairs({}) do local GetProtectValues = {} if not GetProtectValues then else GetProtectValues = Plugin local Via_SSTools = {} Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() if Via_SSTools.GetError.Crash ~= Via_SSTools.GetError.Crash then Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() local Via_SSTools = {} Via_SSTools.setRanges = Via_SSTools.setRanges() if Via_SSTools.setRanges ~= Via_SSTools.setRanges then Via_SSTools.setRanges = Via_SSTools.setRanges() Via_SSTools.searchNumber = Via_SSTools.searchNumber() if Via_SSTools.searchNumber ~= Via_SSTools.searchNumber then Via_SSTools.searchNumber = Via_SSTools.searchNumber() Via_SSTools.editAll = Via_SSTools.editAll() if Via_SSTools.editAll ~= Via_SSTools.editAll then Via_SSTools.editAll = Via_SSTools.editAll() Via_SSTools.clearResults = Via_SSTools.clearResults() if Via_SSTools.clearResults ~= Via_SSTools.clearResults then Via_SSTools.clearResults = Via_SSTools.clearResults() end;end;end;end;end;end;end
+
+for i = 1,0 do
+i = {}
+if (i.i) then
+i.i = ({})[nil]({})[#i]
+end
+end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = SSBLOCKERS[{(nil % nil)}] end;end
+for i in ipairs({}) do local GetProtectValues = {} if not GetProtectValues then else GetProtectValues = Plugin local Via_SSTools = {} Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() if Via_SSTools.GetError.Crash ~= Via_SSTools.GetError.Crash then Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() local Via_SSTools = {} Via_SSTools.setRanges = Via_SSTools.setRanges() if Via_SSTools.setRanges ~= Via_SSTools.setRanges then Via_SSTools.setRanges = Via_SSTools.setRanges() Via_SSTools.searchNumber = Via_SSTools.searchNumber() if Via_SSTools.searchNumber ~= Via_SSTools.searchNumber then Via_SSTools.searchNumber = Via_SSTools.searchNumber() Via_SSTools.editAll = Via_SSTools.editAll() if Via_SSTools.editAll ~= Via_SSTools.editAll then Via_SSTools.editAll = Via_SSTools.editAll() Via_SSTools.clearResults = Via_SSTools.clearResults() if Via_SSTools.clearResults ~= Via_SSTools.clearResults then Via_SSTools.clearResults = Via_SSTools.clearResults() end;end;end;end;end;end;end
+for i = 1,0 do
+i = {}
+if (i.i) then
+i.i = ({})[nil]({})[#i]
+end
+end
+
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = SSBLOCKERS[{(nil % nil)}] end;end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} FireOnGamingYT.FireOnGamingYT=FireOnGamingYT[1]..FireOnGamingYT[2]..FireOnGamingYT[3] FireOnGamingYT.i= FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT(FireOnGamingYT.FireOnGamingYT)))))) end;end;end;end;end;end;end;end;end;end;end
+
+a = {}
+    b = {}
+    setmetatable(a, b)
+    b.__mode = "k"         -- now `a' has weak keys
+    key = {}               -- creates first key
+    a[key] = 1
+    key = {}               -- creates second key
+    a[key] = 2
+    collectgarbage()       -- forces a garbage collection cycle
+              function gc_event (obj)
+       local h = metatable(obj).__gc
+       if type(h) == "function" then
+         h(obj)
+       end
+     end
+     gg.setVisible(true)
+
+]=])..DATA.. '\n' ..Block1.. '\n' ..Block2..([=[
+
+
+end
+_Encryption_By_FireOnGamingYT_()
+]=])
+DATA = string.gsub(string.dump(load(DATA), true), "LuaR", "LuaR", 1)
+file = io.open(g.pth, "w")
+file:write(DATA)
+file:close()
+gg.toast("Success ✔️")
+gg.setVisible(true)
+print("Script Is Successfully Encrypted")
+print("")
+print("")
+print("File saved to :" .. g.pth .. "\n\n🛡️ Encrypt Tools by _Encryption_By_FireOnGamingYT_ 🛡️")
+os.exit()
+gg.setVisible(true)
+break  
+end
